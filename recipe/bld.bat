@@ -9,5 +9,3 @@ cd src
 nmake -f makefile.vc f2c.exe
 
 copy f2c.exe %LIBRARY_PREFIX%\bin
-
-dir %LIBRARY_PREFIX%\bin
