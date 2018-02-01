@@ -7,9 +7,7 @@ copy f2c.h %LIBRARY_PREFIX%/include/f2c
 cd src
 
 copy makefile.vc Makefile
-del xsum.out
-ren xsum1.out xsum.out
 
-nmake
+nmake f2c.exe
 
-copy f2c %LIBRARY_PREFIX%/bin
+copy f2c.exe %LIBRARY_PREFIX%/bin
