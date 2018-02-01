@@ -21,7 +21,7 @@ requirements:
   build:
     - vc 14  # [win]
     - toolchain
-    - unzip
+    - unzip  # [not win]
   run:
     - vc 14  # [win]
 
