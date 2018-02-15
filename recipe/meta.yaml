@@ -10,9 +10,11 @@ source:
   fn: {{ name }}-{{ version }}.tar
   url: http://netlib.sandia.gov/cgi-bin/netlib/netlibfiles.tar?filename=netlib/{{name}}
   sha256: {{ sha256 }}
+  patches:
+    - freebsd-86884.patch  # [win]
 
 build:
-  number: 1
+  number: 2
   features:
     - vc14  # [win]
   msvc_compiler: 14.0
