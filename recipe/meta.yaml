@@ -14,7 +14,7 @@ source:
     - freebsd-86884.patch  # [win]
 
 build:
-  number: 1
+  number: 2
   features:
     - vc14  # [win]
   msvc_compiler: 14.0
