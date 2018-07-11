@@ -14,9 +14,9 @@ The standalone f2c program was based on the core of the first complete Fortran 7
 Current build status
 ====================
 
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/f2c-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/f2c-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/f2c-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/f2c-feedstock)
 [![Windows](https://img.shields.io/appveyor/ci/conda-forge/f2c-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/f2c-feedstock/branch/master)
-![Linux disabled](https://img.shields.io/badge/linux-disabled-lightgrey.svg)
-![OSX disabled](https://img.shields.io/badge/OSX-disabled-lightgrey.svg)
 
 Current release info
 ====================
