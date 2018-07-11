@@ -14,14 +14,16 @@ The standalone f2c program was based on the core of the first complete Fortran 7
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/f2c-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/f2c-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/f2c-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/f2c-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/f2c-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/f2c-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/f2c-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/f2c-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/f2c-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/f2c-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/f2c-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/f2c-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/f2c/badges/version.svg)](https://anaconda.org/conda-forge/f2c)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/f2c/badges/downloads.svg)](https://anaconda.org/conda-forge/f2c)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-f2c-green.svg)](https://anaconda.org/conda-forge/f2c) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/f2c.svg)](https://anaconda.org/conda-forge/f2c) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/f2c.svg)](https://anaconda.org/conda-forge/f2c) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/f2c.svg)](https://anaconda.org/conda-forge/f2c) |
 
 Installing f2c
 ==============

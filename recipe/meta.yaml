@@ -13,17 +13,14 @@ source:
 
 build:
   number: 1
-  features:
-    - vc14  # [win]
-  msvc_compiler: 14.0
+  skip: True  # [vc<14 and win]
 
 requirements:
   build:
-    - vc 14  # [win]
-    - toolchain
+    - {{ compiler('c') }}
+  host:
     - unzip  # [not win]
   run:
-    - vc 14  # [win]
 
 test:
   commands:
@@ -43,7 +40,7 @@ about:
   license_family: OTHER
   license_file: permission
   summary: 'f2c is a program to convert Fortran 77 to C code, developed at Bell Laboratories.'
-  description:  The standalone f2c program was based on the core of the first complete Fortran 77 
+  description:  The standalone f2c program was based on the core of the first complete Fortran 77
                 compiler to be implemented, the "f77" program by Feldman and Weinberger.
   doc_url: http://www.netlib.org/f2c/README
   dev_url: http://www.netlib.org/f2c/
