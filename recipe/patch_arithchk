@@ -1,0 +1,27 @@
+28d27
+< #include <string.h>	/* possibly for ssize_t */
+31d29
+< #include <sys/types.h>	/* another possible place for ssize_t */
+190d187
+< 	size_t sa, sb;
+222,224d218
+< 		if (sizeof(long long) > sizeof(long)
+< 		 && sizeof(long long) == sizeof(void*))
+< 			fprintf(f, "#define LONG_LONG_POINTERS\n");
+228,243d221
+< #ifdef NO_SSIZE_T /*{{*/
+< 		if (sizeof(size_t) == sizeof(long))
+< 			fprintf(f, "#define ssize_t long\n");
+< 		else if (sizeof(size_t) == sizeof(int))
+< 			fprintf(f, "#define ssize_t int\n");
+< #ifndef NO_LONG_LONG
+< 		else if (sizeof(size_t) == sizeof(long long))
+< 			fprintf(f, "#define ssize_t long long\n");
+< #endif
+< 		else
+< 			fprintf(f, "#define ssize_t signed size_t\n"); /* punt */
+< #else /*}{*/
+< 		if (sizeof(size_t) != sizeof(ssize_t))
+< 			fprintf(f, "/* sizeof(size_t) = %d but sizeof(ssize_t) = %d */\n",
+< 				(int)sizeof(size_t), (int)sizeof(ssize_t));
+< #endif /*}}*/
