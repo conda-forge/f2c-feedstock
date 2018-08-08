@@ -7,7 +7,7 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar
+  fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/jasercion/fermi-f2c/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
