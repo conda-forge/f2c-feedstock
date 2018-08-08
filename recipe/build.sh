@@ -4,8 +4,8 @@
 
 mkdir libf2c
 cd libf2c
-mv ../libf2c.zip .
-unzip libf2c.zip
+mv ../f2c-*.tar.gz .
+tar xvf f2c-*.tar.gz
 
 # Using the makefile provided with the package
 # but adding the -fPIC option to the CFLAGS
