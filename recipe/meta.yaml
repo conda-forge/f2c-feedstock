@@ -1,6 +1,6 @@
 {% set name = "f2c" %}
-{% set version = "20160101" %}
-{% set sha256 = "5e4e684faccda6bf15b8282766c7c9a21498498b1769652151bee151c9b212da" %}
+{% set version = "20160103" %}
+{% set sha256 = "fc287517edc67c184bf91860aaa7b342c6c8ce008b298c2a08c4616133009c21" %}
 
 package:
   name: {{ name|lower }}
@@ -8,11 +8,11 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar
-  url: https://github.com/jasercion/fermi-f2c/archive/{{ version }}.tar.gz
+  url: http://netlib.sandia.gov/cgi-bin/netlib/netlibfiles.tar?filename=netlib/{{name}}
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: True  # [vc<14 and win]
 
 requirements:
