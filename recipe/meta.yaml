@@ -7,12 +7,12 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar
+  fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/jasercion/fermi-f2c/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   skip: True  # [vc<14 and win]
 
 requirements:
