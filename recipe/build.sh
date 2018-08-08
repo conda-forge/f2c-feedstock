@@ -7,6 +7,10 @@ cd libf2c
 mv ../libf2c.zip .
 unzip libf2c.zip
 
+# Patch arithchk.c to make it compatible with the Fermi Science Tools
+# (and most probably with most other software)
+patch arithchk.c ${RECIPE_DIR}/patch_arithchk
+
 # Using the makefile provided with the package
 # but adding the -fPIC option to the CFLAGS
 sed 's/CFLAGS = -O/CFLAGS = -O -fPIC/g' makefile.u > Makefile
