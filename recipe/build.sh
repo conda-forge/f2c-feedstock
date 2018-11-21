@@ -15,6 +15,12 @@ patch arithchk.c ${RECIPE_DIR}/patch_arithchk
 # but adding the -fPIC option to the CFLAGS
 sed 's/CFLAGS = -O/CFLAGS = -O -fPIC/g' makefile.u > Makefile
 
+# The Makefile directly calls "cc", which is sometimes not the name
+# of the compiler. So we create a link here and add this directory
+# to PATH
+ln -s ${CC} cc
+export PATH=${PATH}:${PWD}
+
 make hadd
 make all
 
