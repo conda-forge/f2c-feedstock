@@ -19,7 +19,7 @@ sed 's/CFLAGS = -O/CFLAGS = -O -fPIC/g' makefile.u > Makefile
 # of the compiler. So we create a wrapper script here that calls the
 # proper compiler
 
-cat > cc <<- EOM
+cat > cc << EOM
 #!/bin/bash -x
 ${CC} "$@"
 
