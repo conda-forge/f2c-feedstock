@@ -15,6 +15,10 @@ patch arithchk.c ${RECIPE_DIR}/patch_arithchk
 # but adding the -fPIC option to the CFLAGS
 sed 's/CFLAGS = -O/CFLAGS = -O -fPIC/g' makefile.u > Makefile
 
+# Add alias cc -> $CC to be able to compile with the new compilers
+# of Conda 5
+alias cc="${CC}"
+
 make hadd
 make all
 
