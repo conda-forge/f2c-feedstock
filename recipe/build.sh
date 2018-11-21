@@ -15,9 +15,20 @@ patch arithchk.c ${RECIPE_DIR}/patch_arithchk
 # but adding the -fPIC option to the CFLAGS
 sed 's/CFLAGS = -O/CFLAGS = -O -fPIC/g' makefile.u > Makefile
 
-# Add alias cc -> $CC to be able to compile with the new compilers
-# of Conda 5
-alias cc="${CC}"
+# The Makefile directly calls "cc", which is sometimes not the name
+# of the compiler. So we create a wrapper script here that calls the
+# proper compiler
+
+cat > cc <<- EOM
+#!/bin/bash -x
+${CC} "$@"
+
+EOM
+
+# Make the script executable and add 
+# the current directory to PATH
+chmod u+x cc
+export PATH=${PATH}:${PWD}
 
 make hadd
 make all
