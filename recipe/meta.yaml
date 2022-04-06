@@ -1,14 +1,15 @@
 {% set name = "f2c" %}
-{% set version = "20180419" %}
-{% set sha256 = "7054ff0f6b3718586911521a368fa89976c33d18add2403d811446ec73a16d2e" %}
+{% set version = "20210323183018" %}
+{% set sha256 = "ca404070e9ce0a9aaa6a71fc7d5489d014ade952c5d6de7efb88de8e24f2e8e0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: src.tar
+  fn: libf2c.zip
   url: https://web.archive.org/web/20180419233829/http://www.netlib.org/{{ name }}/src.tgz
+  url: https://web.archive.org/web/20210323183018/https://netlib.sandia.gov/f2c/libf2c.zip
   sha256: {{ sha256 }}
 
 build:

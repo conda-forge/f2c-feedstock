@@ -4,7 +4,8 @@
 
 mkdir libf2c
 cd libf2c
-tar -xzvf ../src.tgz
+mv ../libf2c.zip .
+unzip libf2c.zip
 
 # Patch arithchk.c to make it compatible with the Fermi Science Tools
 # (and most probably with most other software)
@@ -47,4 +48,4 @@ make f2c
 cp f2c ${PREFIX}/bin/
 
 # Install the pkg-config file
-cp f2c.pc ${PREFIX}/lib/pkgconfig
+cp ${RECIPE_DIR}/f2c.pc ${PREFIX}/lib/pkgconfig
