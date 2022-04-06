@@ -31,7 +31,6 @@ mkdir ${PREFIX}/include/f2c
 cp f2c.h ${PREFIX}/include/f2c
 
 # Now build the f2c executable
-cd ../src
 
 cp makefile.u Makefile
 
