@@ -13,24 +13,18 @@ source:
 
 build:
   number: 1002
-  skip: True  # [vc<14 and win]
+  skip: True  # [win]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - make
   host:
-    - make  # [not win]
   run:
 
 test:
   commands:
     - test -f ${PREFIX}/include/f2c/f2c.h  # [not win]
-    - f2c --version
-    - f2c test_main.f && ${CC} test_main.c -L${PREFIX}/lib -lf2c -I${PREFIX}/include -o test_main && ./test_main  # [not win]
-  requires:
-    - {{ compiler('c') }}
-  files:
-    - test_main.f
 
 about:
   home: http://www.netlib.org/f2c/
