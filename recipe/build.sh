@@ -34,10 +34,5 @@ cp f2c.h ${PREFIX}/include/f2c
 
 cp makefile.u Makefile
 
-make f2c
-
-# Install the binary
-cp f2c ${PREFIX}/bin/
-
 # Install the pkg-config file
 cp ${RECIPE_DIR}/f2c.pc ${PREFIX}/lib/pkgconfig
