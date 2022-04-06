@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# Build libf2c.a library
-
-mkdir libf2c
-cd libf2c
-mv ../libf2c.zip .
-unzip libf2c.zip
-
 # Patch arithchk.c to make it compatible with the Fermi Science Tools
 # (and most probably with most other software)
 patch arithchk.c ${RECIPE_DIR}/patch_arithchk
