@@ -46,3 +46,6 @@ make f2c
 
 # Install the binary
 cp f2c ${PREFIX}/bin/
+
+# Install the pkg-config file
+cp f2c.pc ${PREFIX}/lib/pkgconfig
