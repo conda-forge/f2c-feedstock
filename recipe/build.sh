@@ -4,8 +4,7 @@
 
 mkdir libf2c
 cd libf2c
-mv ../libf2c.zip .
-unzip libf2c.zip
+tar -xzvf ../src.tgz
 
 # Patch arithchk.c to make it compatible with the Fermi Science Tools
 # (and most probably with most other software)
