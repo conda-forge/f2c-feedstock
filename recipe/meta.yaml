@@ -36,7 +36,7 @@ about:
   home: http://www.netlib.org/f2c/
   license: OTHER
   license_family: OTHER
-  license_file: permission
+  license_file: LICENSE
   summary: 'f2c is a program to convert Fortran 77 to C code, developed at Bell Laboratories.'
   description:  The standalone f2c program was based on the core of the first complete Fortran 77
                 compiler to be implemented, the "f77" program by Feldman and Weinberger.
