@@ -25,8 +25,6 @@ requirements:
 test:
   commands:
     - test -f ${PREFIX}/include/f2c/f2c.h  # [not win]
-    - conda inspect linkages -p $PREFIX f2c  # [not win]
-    - conda inspect objects -p $PREFIX f2c  # [osx]
     - f2c --version
     - f2c test_main.f && ${CC} test_main.c -L${PREFIX}/lib -lf2c -I${PREFIX}/include -o test_main && ./test_main  # [not win]
   requires:
