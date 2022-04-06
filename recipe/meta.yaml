@@ -1,18 +1,18 @@
 {% set name = "f2c" %}
-{% set version = "20160103" %}
-{% set sha256 = "a8b8daac7735cebbf16b7eab17d727e6be5c645f30d8ac1dd7e95662fd0eb376" %}
+{% set version = "20180419" %}
+{% set sha256 = "7054ff0f6b3718586911521a368fa89976c33d18add2403d811446ec73a16d2e" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar
-  url: http://netlib.sandia.gov/cgi-bin/netlib/netlibfiles.tar?filename=netlib/{{name}}
+  fn: src.tar
+  url: https://web.archive.org/web/20180419233829/http://www.netlib.org/{{ name }}/src.tgz
   sha256: {{ sha256 }}
 
 build:
-  number: 1001
+  number: 1002
   skip: True  # [vc<14 and win]
 
 requirements:
