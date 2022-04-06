@@ -19,7 +19,7 @@ requirements:
   build:
     - {{ compiler('c') }}
   host:
-    - unzip  # [not win]
+    - make  # [not win]
   run:
 
 test:
