@@ -10,7 +10,13 @@ patch arithchk.c ${RECIPE_DIR}/patch_arithchk
 # Using the makefile provided with the package
 # but adding the -fPIC option to the CFLAGS
 sed 's/CFLAGS = -O/CFLAGS = -O -fPIC/g' makefile.u > Makefile
-sed -i '' -e "s;\$(CC) -shared;\$(CC) -shared \$(CFLAGS) -Wl,-U,_MAIN__ -Wl,-rpath,${PREFIX}/lib ;g" Makefile
+
+# If this is a mac, allow the main symbol to be undefined in the shared library
+if [ "$(uname)" == "Darwin" ]; then
+  sed -i '' \
+  -e "s;\$(CC) -shared;\$(CC) -shared \$(CFLAGS) -Wl,-U,_MAIN__ -Wl,-rpath,${PREFIX}/lib ;g"\
+  Makefile
+fi
 
 # The Makefile directly calls "cc", which is sometimes not the name
 # of the compiler. So we create a link here and add this directory
