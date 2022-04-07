@@ -16,21 +16,19 @@ source:
     sha256: {{ srcsha256 }}
 
 build:
-  number: 1005
+  number: 1006
   skip: True  # [vc < 14 and win]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - make
-  host:
-  run:
 
 test:
   commands:
     - test -f ${PREFIX}/include/f2c/f2c.h  # [not win]
     - f2c --version
-    - f2c test_main.f && ${CC} test_main.c -L${PREFIX}/lib -lf2c -I${PREFIX}/include -o test_main && ./test_main  # [not win]
+    - f2c test_main.f && ${CC} test_main.c -L${PREFIX}/lib -lf2c -I${PREFIX}/include -o test_main -Wl,-rpath,${PREFIX}/lib && ./test_main  # [not win]
   requires:
     - {{ compiler('c') }}
   files:
