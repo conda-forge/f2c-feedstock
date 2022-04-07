@@ -30,9 +30,6 @@ cp f2c.h ${PREFIX}/include
 mkdir ${PREFIX}/include/f2c
 cp f2c.h ${PREFIX}/include/f2c
 
-# Now build the f2c executable
-
-cp makefile.u Makefile
 
 # Install the pkg-config file
 mkdir ${PREFIX}/lib/pkgconfig
