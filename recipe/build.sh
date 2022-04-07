@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Build libf2c.a library
+cd libf2c
+
 # Patch arithchk.c to make it compatible with the Fermi Science Tools
 # (and most probably with most other software)
 patch arithchk.c ${RECIPE_DIR}/patch_arithchk
@@ -30,7 +33,17 @@ cp f2c.h ${PREFIX}/include
 mkdir ${PREFIX}/include/f2c
 cp f2c.h ${PREFIX}/include/f2c
 
+# Now build the f2c executable
+cd ../src
+
+cp makefile.u Makefile
+
+make f2c
+
+# Install the binary
+mkdir -p ${PREFIX}/bin
+cp f2c ${PREFIX}/bin/f2c
 
 # Install the pkg-config file
-mkdir ${PREFIX}/lib/pkgconfig
+mkdir -p ${PREFIX}/lib/pkgconfig
 cp ${RECIPE_DIR}/f2c.pc ${PREFIX}/lib/pkgconfig/f2c.pc
