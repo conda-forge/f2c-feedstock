@@ -35,4 +35,5 @@ cp f2c.h ${PREFIX}/include/f2c
 cp makefile.u Makefile
 
 # Install the pkg-config file
-cp ${RECIPE_DIR}/f2c.pc ${PREFIX}/lib/pkgconfig
+mkdir ${PREFIX}/lib/pkgconfig
+cp ${RECIPE_DIR}/f2c.pc ${PREFIX}/lib/pkgconfig/f2c.pc
