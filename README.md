@@ -3,7 +3,7 @@ About f2c
 
 Home: http://www.netlib.org/f2c/
 
-Package license: LicenseRef-AT&T-Bell-Attribution
+Package license: SMLNJ
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/f2c-feedstock/blob/main/LICENSE.txt)
 
