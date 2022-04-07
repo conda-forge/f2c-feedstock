@@ -1,19 +1,23 @@
 {% set name = "f2c" %}
 {% set version = "20210323183018" %}
-{% set sha256 = "ca404070e9ce0a9aaa6a71fc7d5489d014ade952c5d6de7efb88de8e24f2e8e0" %}
+{% set libsha256 = "ca404070e9ce0a9aaa6a71fc7d5489d014ade952c5d6de7efb88de8e24f2e8e0" %}
+{% set srcsha256 = "d4847456aa91c74e5e61e2097780ca6ac3b20869fae8864bfa8dcc66f6721d35" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: libf2c.zip
-  url: https://web.archive.org/web/20210323183018/https://netlib.sandia.gov/f2c/libf2c.zip
-  sha256: {{ sha256 }}
+  - url: https://web.archive.org/web/{{ version }}/https://netlib.sandia.gov/f2c/libf2c.zip
+    folder: libf2c
+    sha256: {{ libsha256 }}
+  - url: https://web.archive.org/web/{{ version }}/https://netlib.sandia.gov/f2c/src.tgz
+    folder: src
+    sha256: {{ srcsha256 }}
 
 build:
-  number: 1002
-  skip: True  # [win]
+  number: 1004
+  skip: True  # [vc < 14 and win]
 
 requirements:
   build:
@@ -25,6 +29,12 @@ requirements:
 test:
   commands:
     - test -f ${PREFIX}/include/f2c/f2c.h  # [not win]
+    - f2c --version
+    - f2c test_main.f && ${CC} test_main.c -L${PREFIX}/lib -lf2c -I${PREFIX}/include -o test_main && ./test_main  # [not win]
+  requires:
+    - {{ compiler('c') }}
+  files:
+    - test_main.f
 
 about:
   home: http://www.netlib.org/f2c/
