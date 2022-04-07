@@ -46,4 +46,5 @@ cp f2c ${PREFIX}/bin/f2c
 
 # Install the pkg-config file
 mkdir -p ${PREFIX}/lib/pkgconfig
+echo "Version: ${PKG_VERSION}" >> ${RECIPE_DIR}/f2c.pc
 cp ${RECIPE_DIR}/f2c.pc ${PREFIX}/lib/pkgconfig/f2c.pc
