@@ -14,14 +14,14 @@ sed -e's/CFLAGS = -O/CFLAGS = -O -fPIC/g' \
   -e"s;CC = cc;CC = ${CC};g" \
   -e"s;ld ;${LD} ;g" \
   -e"s;ar r;${AR} r;g" \
-  -e"s/\$(CC) \$(CFLAGS) -DNO_FPINIT arithchk.c/cc \$(CFLAGS) -DNO_FPINIT arithchk.c/g" \
-	-e"s/\$(CC) -DNO_LONG_LONG/cc -DNO_LONG_LONG/" \
+  -e"s;\$(CC) \$(CFLAGS) -DNO_FPINIT arithchk.c;${CC_FOR_BUILD} \$(CFLAGS) -DNO_FPINIT arithchk.c;g" \
+	-e"s;\$(CC) -DNO_LONG_LONG;${CC_FOR_BUILD} -DNO_LONG_LONG;" \
 makefile.u > Makefile
 
 # If this is a mac, allow the main symbol to be undefined in the shared library
 if [ "$(uname)" == "Darwin" ]; then
   sed -i '' \
-  -e "s;\$(CC) -shared;\$(CC) -shared \$(CFLAGS) -Wl,-U,_MAIN__ -Wl,-rpath,${PREFIX}/lib ;g"\
+  -e"s;\$(CC) -shared;\$(CC) -shared \$(CFLAGS) -Wl,-U,_MAIN__ -Wl,-rpath,${PREFIX}/lib ;g"\
   Makefile
 fi
 
