@@ -4,5 +4,5 @@ includedir=${prefix}/include
 
 Name: f2c
 Description: A program to convert Fortran 77 to C code, developed at Bell Laboratories.
-Libs: -L${libdir} -lf2c.a -lm
+Libs: -L${libdir} -lf2c -lm
 Cflags: -I${includedir}
