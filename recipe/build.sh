@@ -23,8 +23,6 @@ if [ "$(uname)" == "Darwin" ]; then
   Makefile
 fi
 
-cat Makefile
-
 make hadd
 make all
 
