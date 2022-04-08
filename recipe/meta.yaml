@@ -16,7 +16,7 @@ source:
     sha256: {{ srcsha256 }}
 
 build:
-  number: 1007
+  number: 1008
   skip: True  # [vc < 14 and win]
 
 requirements:
