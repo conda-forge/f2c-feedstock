@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Build libf2c.a library
+# Build libf2c.a and libf2c.so libraries
 cd libf2c
 
 # Patch arithchk.c to make it compatible with the Fermi Science Tools
@@ -14,6 +14,8 @@ sed -e's/CFLAGS = -O/CFLAGS = -O -fPIC/g' \
   -e"s;CC = cc;CC = ${CC};g" \
   -e"s;ld ;${LD} ;g" \
   -e"s;ar r;${AR} r;g" \
+  -e"s/\$(CC) \$(CFLAGS) -DNO_FPINIT arithchk.c/cc \$(CFLAGS) -DNO_FPINIT arithchk.c/g" \
+	-e"s/\$(CC) -DNO_LONG_LONG/cc -DNO_LONG_LONG/" \
 makefile.u > Makefile
 
 # If this is a mac, allow the main symbol to be undefined in the shared library
@@ -51,10 +53,7 @@ cp libf2c.so ${PREFIX}/lib/libf2c.so
 cd ../src
 
 # Use the builtin compiler toolchain
-sed -e"s;CC = cc;CC = ${CC};g" \
-  -e"s;ld ;${LD} ;g" \
-  -e"s;ar r;${AR} r;g" \
-  makefile.u > Makefile
+sed -e"s;CC = cc;CC = ${CC};g" makefile.u > Makefile
 
 make f2c
 
