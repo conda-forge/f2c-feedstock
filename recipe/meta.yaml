@@ -14,9 +14,12 @@ source:
   - url: https://web.archive.org/web/{{ version }}/https://netlib.sandia.gov/f2c/src.tgz
     folder: src
     sha256: {{ srcsha256 }}
+  - patches:
+    - libf2c.makefile.u.patch
+    - libf2c.arithchk.patch
 
 build:
-  number: 1008
+  number: 1009
   skip: True  # [vc < 14 and win]
 
 requirements:
