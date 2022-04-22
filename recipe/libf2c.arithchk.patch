@@ -1,0 +1,50 @@
+--- libf2c/arithchk.c	2013-07-03 13:16:09.000000000 -0400
++++ libf2c/arithchk.c	2022-04-21 14:21:10.000000000 -0400
+@@ -25,10 +25,8 @@
+ /* Try to deduce arith.h from arithmetic properties. */
+ 
+ #include <stdio.h>
+-#include <string.h>	/* possibly for ssize_t */
+ #include <math.h>
+ #include <errno.h>
+-#include <sys/types.h>	/* another possible place for ssize_t */
+ 
+ #ifdef NO_FPINIT
+ #define fpinit_ASL()
+@@ -187,7 +185,6 @@
+ 	FILE *f;
+ 	Akind *a = 0;
+ 	int Ldef = 0;
+-	size_t sa, sb;
+ 	unsigned int nanbits[2];
+ 
+ 	fpinit_ASL();
+@@ -219,28 +216,9 @@
+ 		if (sizeof(char*) == 8)
+ 			fprintf(f, "#define X64_bit_pointers\n");
+ #ifndef NO_LONG_LONG
+-		if (sizeof(long long) > sizeof(long)
+-		 && sizeof(long long) == sizeof(void*))
+-			fprintf(f, "#define LONG_LONG_POINTERS\n");
+ 		if (sizeof(long long) < 8)
+ #endif
+ 			fprintf(f, "#define NO_LONG_LONG\n");
+-#ifdef NO_SSIZE_T /*{{*/
+-		if (sizeof(size_t) == sizeof(long))
+-			fprintf(f, "#define ssize_t long\n");
+-		else if (sizeof(size_t) == sizeof(int))
+-			fprintf(f, "#define ssize_t int\n");
+-#ifndef NO_LONG_LONG
+-		else if (sizeof(size_t) == sizeof(long long))
+-			fprintf(f, "#define ssize_t long long\n");
+-#endif
+-		else
+-			fprintf(f, "#define ssize_t signed size_t\n"); /* punt */
+-#else /*}{*/
+-		if (sizeof(size_t) != sizeof(ssize_t))
+-			fprintf(f, "/* sizeof(size_t) = %d but sizeof(ssize_t) = %d */\n",
+-				(int)sizeof(size_t), (int)sizeof(ssize_t));
+-#endif /*}}*/
+ 		if (a->kind <= 2) {
+ 			if (fzcheck())
+ 				fprintf(f, "#define Sudden_Underflow\n");

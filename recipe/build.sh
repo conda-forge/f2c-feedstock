@@ -1,29 +1,21 @@
 #!/bin/bash
 
-# Build libf2c.a and libf2c.so libraries
+if [ "$(uname)" == "Darwin" ]; then
+    # If Mac OSX then set sysroot flag
+    export CFLAGS="-isysroot ${CONDA_BUILD_SYSROOT} -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET} ${CFLAGS}"
+    export LDFLAGS="${LDFLAGS} -L${CONDA_BUILD_SYSROOT}/usr/lib -headerpad_max_install_names"
+fi
+
+# Build libf2c libraries
 cd libf2c
 
-# Patch arithchk.c to make it compatible with the Fermi Science Tools
-# (and most probably with most other software)
-patch arithchk.c ${RECIPE_DIR}/patch_arithchk
+# Using the makefile provided with the package but adding the environment CFLAGS to the
+# declaraction. Use the builtin compiler toolchain
+# cp makefile.u Makefile
+sed -e"s;CFLAGS = -O -fPIC;CFLAGS = ${CFLAGS} -O -fPIC;g"  makefile.u > Makefile
 
-# Using the makefile provided with the package
-# but adding the -fPIC option to the CFLAGS
-# Use the builtin compiler toolchain
-sed -e's/CFLAGS = -O/CFLAGS = -O -fPIC/g' \
-  -e"s;CC = cc;CC = ${CC};g" \
-  -e"s;ld ;${LD} ;g" \
-  -e"s;ar r;${AR} r;g" \
-  -e"s;\$(CC) \$(CFLAGS) -DNO_FPINIT arithchk.c;${CC_FOR_BUILD} \$(CFLAGS) -DNO_FPINIT arithchk.c;g" \
-	-e"s;\$(CC) -DNO_LONG_LONG;${CC_FOR_BUILD} -DNO_LONG_LONG;" \
-makefile.u > Makefile
+cp ${RECIPE_DIR}/MAIN_stub.c .
 
-# If this is a mac, allow the main symbol to be undefined in the shared library
-if [ "$(uname)" == "Darwin" ]; then
-  sed -i '' \
-  -e"s;\$(CC) -shared;\$(CC) -shared \$(CFLAGS) -Wl,-U,_MAIN__ -Wl,-rpath,${PREFIX}/lib ;g"\
-  Makefile
-fi
 
 make hadd
 make all
@@ -34,7 +26,8 @@ mkdir -p ${PREFIX}/lib
 mkdir -p ${PREFIX}/include/f2c
 
 # Install the header and static library
-make install libdir=${PREFIX}/lib \
+make install \
+  libdir=${PREFIX}/lib \
   LIBDIR=${PREFIX}/lib \
   includedir=${PREFIX}/include/f2c \
   INCDIR=${PREFIX}/include/f2c
@@ -46,8 +39,8 @@ cp f2c.h ${PREFIX}/include/f2c/f2c.h
 
 # Make the shared library explicity. It's neither part of the "all" target, nor the
 # "install" target.
-make libf2c.so
-cp libf2c.so ${PREFIX}/lib/libf2c.so
+# make libf2c.so
+# cp libf2c.so ${PREFIX}/lib/libf2c.so
 
 # Now build the f2c executable
 cd ../src
