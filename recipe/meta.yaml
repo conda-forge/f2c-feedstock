@@ -27,8 +27,8 @@ requirements:
   build:
     - {{ compiler('c') }}
     - cmake
-    - make #[not win]
-    - ninja #[win]
+    - make  # [not win]
+    - ninja  # [win]
 
 test:
   requires:
