@@ -15,27 +15,34 @@ source:
     folder: src
     sha256: {{ srcsha256 }}
   - patches:
-    - libf2c.makefile.u.patch
-    - libf2c.arithchk.patch
+    - patches/f2c.h0.patch
+    - patches/signal_.c.patch
+    - patches/wsfe.c.patch
 
 build:
-  number: 1009
+  number: 1010
   skip: True  # [vc < 14 and win]
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - make
+    - cmake
+    - make  # [not win]
+    - ninja  # [win]
 
 test:
-  commands:
-    - test -f ${PREFIX}/include/f2c/f2c.h  # [not win]
-    - f2c --version
-    - f2c test_main.f && ${CC} test_main.c -L${PREFIX}/lib -lf2c -I${PREFIX}/include -o test_main -Wl,-rpath,${PREFIX}/lib && ./test_main  # [not win]
   requires:
     - {{ compiler('c') }}
   files:
     - test_main.f
+  commands:
+    - test -f ${PREFIX}/include/f2c/f2c.h  # [not win]
+    - test -f ${PREFIX}/bin/f2c  # [not win]
+    - test -f ${PREFIX}/lib/libf2c.a  # [not win]
+    - test -f ${PREFIX}/lib/libf2c.so  # [linux]
+    - test -f ${PREFIX}/lib/libf2c.dylib  # [osx]
+    - f2c --version
+    - f2c test_main.f && ${CC} test_main.c -L${PREFIX}/lib -lf2c -lm -I${PREFIX}/include -o test_main -Wl,-rpath,${PREFIX}/lib && ./test_main  # [not win]
 
 about:
   home: http://www.netlib.org/f2c/
