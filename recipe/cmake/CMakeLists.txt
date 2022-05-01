@@ -71,12 +71,14 @@ add_library(f2c_static STATIC $<TARGET_OBJECTS:f2cobjs>)
 set_target_properties(f2c PROPERTIES OUTPUT_NAME f2c)
 set_target_properties(f2c_static PROPERTIES OUTPUT_NAME f2c POSITION_INDEPENDENT_CODE 1)
 target_include_directories(
-  f2c
-  PUBILC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<INSTALL_INTERFACE:>
+  f2c PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+  $<INSTALL_INTERFACE:>
 )
 target_include_directories(
-  f2c_static
-  PUBILC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}> $<INSTALL_INTERFACE:>
+  f2c_static PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+  $<INSTALL_INTERFACE:>
 )
 target_compile_definitions(f2c INTERFACE Skip_f2c_Undefs INTEGER_STAR_8)
 target_compile_definitions(f2c_static INTERFACE Skip_f2c_Undefs INTEGER_STAR_8)
