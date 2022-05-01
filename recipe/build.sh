@@ -16,9 +16,4 @@ cmake -S . \
   -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
   ${CMAKE_ARGS}
 
-cmake --build Release --target=install
-
-# # Install the pkg-config file
-# echo "Version: ${PKG_VERSION}" >> ${RECIPE_DIR}/f2c.pc
-# mkdir -p ${PREFIX}/lib/pkgconfig
-# cp ${RECIPE_DIR}/f2c.pc ${PREFIX}/lib/pkgconfig/f2c.pc
+cmake --build Release --target=install --parallel ${CPU_COUNT:-2}
