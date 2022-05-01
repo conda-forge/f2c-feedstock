@@ -1,8 +1,0 @@
-prefix=${pcfiledir}/../..
-libdir=${prefix}/lib
-includedir=${prefix}/include
-
-Name: f2c
-Description: A program to convert Fortran 77 to C code, developed at Bell Laboratories.
-Libs: -L${libdir} -lf2c -lm
-Cflags: -I${includedir}

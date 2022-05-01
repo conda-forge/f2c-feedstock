@@ -1,0 +1,20 @@
+--- libf2c/signal_.c	2000-07-04 22:04:56.000000000 -0400
++++ libf2c/signal_.c	2022-05-01 13:12:34.000000000 -0400
+@@ -4,7 +4,7 @@
+ extern "C" {
+ #endif
+ 
+- ftnint
++ ftnlint
+ #ifdef KR_headers
+ signal_(sigp, proc) integer *sigp; sig_pf proc;
+ #else
+@@ -14,7 +14,7 @@
+ 	int sig;
+ 	sig = (int)*sigp;
+ 
+-	return (ftnint)signal(sig, proc);
++	return (ftnlint)signal(sig, proc);
+ 	}
+ #ifdef __cplusplus
+ }
